@@ -1,1 +1,18 @@
-<p>subject-expert works!</p>
+<div>
+    <h2>Subject Experts</h2>
+    <button (click)="create()">Create</button>
+    <table *ngIf="experts.length">
+        <thead><tr><th>RegNo</th><th>Email</th><th>Expertise</th><th>Actions</th></tr></thead>
+        <tbody>
+            <tr *ngFor="let e of experts">
+                <td>{{ e.regNo }}</td>
+                <td>{{ e.email }}</td>
+                <td>{{ e.subExperties }}</td>
+                <td>
+                    <button (click)="edit(e.regNo)">Edit</button>
+                    <button (click)="delete(e.regNo)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

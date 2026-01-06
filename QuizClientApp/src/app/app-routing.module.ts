@@ -1,3 +1,4 @@
+/// <reference path="app.component.ts" />
 
 
 // Angular Import
@@ -22,6 +23,14 @@ const routes: Routes = [
         redirectTo: '/analytics',
         pathMatch: 'full'
       },
+
+      {
+
+        path: 'homepage',
+        loadComponent: () => import('./app.component').then((c) => c.AppComponent)
+      },
+
+
       {
         path: 'organization',
         loadComponent: () => import('./theme/layout/admin/org/org.component').then((c) => c.OrgComponent)

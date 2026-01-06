@@ -8,6 +8,7 @@ namespace QuizServer.Models;
 public partial class OrganizationMaster
 {
     public int OrganizationId { get; set; }
+
     public string RegNo { get; set; }
 
     public DateOnly? RegDate { get; set; }

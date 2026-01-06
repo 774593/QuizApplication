@@ -20,11 +20,11 @@ public class UserMasterController : ControllerBase
     [HttpGet("ALLUsers")]
     public async Task<IActionResult> GetAllUsers()
     {
-        
-        var users = await _userRepo.GetAllAsync();
+
+        var users = await _userRepo.getAllUsersAsync();
 
         return Ok(users);
-
+    }
       
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser([FromBody] UserMaster user)
@@ -34,28 +34,28 @@ public class UserMasterController : ControllerBase
                 return BadRequest("User data is invalid.");
             }
 
-            await _userRepo.AddAsync(user);
-            return CreatedAtAction(nameof(GetAllUsers), new { id = user.UserId }, user);
+            await _userRepo.addUserAsync(user);
+            return CreatedAtAction(nameof(GetAllUsers), new { id = user.UserName }, user);
         }
 
         [HttpPut("UpdateUser/{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserMaster user)
+        public async Task<IActionResult> UpdateUser(string id, [FromBody] UserMaster user)
         {
-            if (id != user.UserId)
+            if (id != user.UserName)
             {
                 return BadRequest("User ID mismatch.");
             }
 
-            await _userRepo.UpdateAsync(user);
+            await _userRepo.updateUserAsync(user);
             return NoContent();
         }
 
         
-        [HttpDelete("DeleteUser/{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            await _userRepo.DeleteAsync(id);
-            return Ok($"User ID {id} deleted successfully.");
-        }
+        //[HttpDelete("DeleteUser/{id}")]
+        //public async Task<IActionResult> DeleteUser(int id)
+        //{
+        //    await _userRepo.d(id);
+        //    return Ok($"User ID {id} deleted successfully.");
+        //}
     }
-}
+

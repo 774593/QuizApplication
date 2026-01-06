@@ -6,7 +6,7 @@ import { email, Field, form, minLength, required } from '@angular/forms/signals'
 import { Router } from '@angular/router';
 // project import
 import { SharedModule } from '../../../../theme/shared/shared.module';
-
+import { UserService } from '../../../../services/user.service';  
 @Component({
   selector: 'app-sign-in',
   imports: [CommonModule, RouterModule, SharedModule, Field],
@@ -15,13 +15,28 @@ import { SharedModule } from '../../../../theme/shared/shared.module';
 })
 export class SignInComponent {
   private cd = inject(ChangeDetectorRef);
+  userName = '';
+  password = '';
 
-  constructor(private router: Router) { }
-  goToDash() {
-    this.router.navigate(['/analytics']);
+  constructor(private router: Router, private userService: UserService) { }
+  login() {
+    this.userService.login(this.userName, this.password).subscribe({
+      next: user => {
+        //console.log('logged in', user);
+        this.router.navigateByUrl('/', { replaceUrl: true });
+      },
+      error: err => {
+        console.error('login error', err);
+      }
+    });
   }
 
 
+
+  //goToDash() {
+  //  this.router.navigate(['/analytics']);
+  //}
+  
   submitted = signal(false);
   error = signal('');
   showPassword = signal(false);

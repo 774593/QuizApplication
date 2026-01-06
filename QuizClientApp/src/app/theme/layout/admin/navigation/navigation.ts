@@ -145,7 +145,7 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'basic',
-        title: 'Create & Manage',
+        title: 'Events',
         type: 'collapse',
         icon: 'feather icon-box',
         children: [
@@ -187,6 +187,7 @@ export const NavigationItems: NavigationItem[] = [
         target: true,
         breadcrumbs: false
       },
+
       //{
       //  id: 'signin',
       //  title: 'Quiz Schedule',
@@ -270,10 +271,54 @@ export const NavigationItems: NavigationItem[] = [
   },
   {
     id: 'forms & tables',
-    title: 'Other',
+    title: 'Master',
     type: 'group',
     icon: 'icon-group',
     children: [
+      {
+        id: 'button',
+        title: 'Organization',
+        type: 'item',
+        url: '/organization',
+        classes: 'nav-item',
+        icon: 'feather icon-log-in',
+      },
+      {
+        id: 'badges',
+        title: 'Subject',
+        type: 'item',
+        url: '/subject',
+        classes: 'nav-item',
+        icon: 'feather icon-log-in',
+      },
+      {
+        id: 'breadcrumb-pagination',
+        title: 'Subject-Expert',
+        type: 'item',
+        url: '/subjectexpert',
+        classes: 'nav-item',
+        icon: 'feather icon-log-in',
+      },
+
+      {
+        id: 'tabs-pills',
+        title: 'event',
+        type: 'item',
+        url: '/event',
+        classes: 'nav-item',
+        icon: 'feather icon-log-in',
+      },
+      {
+        id: 'collapse',
+        title: 'Question Bank',
+        type: 'item',
+        url: '/questionbank',
+         classes: 'nav-item',
+        icon: 'feather icon-log-in',
+      },
+
+
+
       {
         id: 'forms',
         title: 'Other 1',
