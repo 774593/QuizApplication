@@ -24,7 +24,23 @@ export class CreateComponent implements OnInit {
       organizationId: [null],
       regNo: [''],
       orgName: ['', Validators.required],
-      city: ['']
+      city: [''],
+     
+      regDate: [''],
+      contactPersonFname: [''],
+      contactPersonLname: [''],
+      address: [''],
+      state: [''],
+      contactNo: [''],
+      alterNetNo: [''],
+      email: [''],
+      logoPath: [''],
+      createdBy: [''],
+      createdOn: [''],
+      updatedBy: [''],
+      updatedOn: [''],
+      isActive: [''],
+      isDeleted: ['']
     });
 
     this.idParam = this.route.snapshot.paramMap.get('id');
@@ -33,8 +49,12 @@ export class CreateComponent implements OnInit {
       this.svc.getById(Number(this.idParam)).subscribe(data => this.form.patchValue(data));
     }
   }
-
+  back(): void {
+    // route defined as 'addorganization' in your routing — navigate there
+    this.router.navigate(['/organization']);
+  }
   submit() {
+    
     if (this.form.invalid) return;
     const value = this.form.value;
     if (this.editing && this.idParam) {

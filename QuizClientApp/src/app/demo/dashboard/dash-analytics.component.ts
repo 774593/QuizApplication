@@ -11,6 +11,7 @@ import { SharedModule } from '../../theme/shared/shared.module';
 import { ApexOptions, ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 @Component({
   selector: 'app-dash-analytics',
+  
   imports: [SharedModule, NgApexchartsModule],
   templateUrl: './dash-analytics.component.html',
   styleUrls: ['./dash-analytics.component.scss']

@@ -23,7 +23,7 @@ namespace QuizServer.Repository
 
         public async Task<OrganizationMaster?> getOrganizationByRegNoAsync(string regNo)
         {
-            if (string.IsNullOrWhiteSpace(regNo)) return null;
+            if (string.IsNullOrWhiteSpace(regNo.ToString())) return null;
             return await _context.OrganizationMasters.FirstOrDefaultAsync(o => o.RegNo == regNo);
         }
 

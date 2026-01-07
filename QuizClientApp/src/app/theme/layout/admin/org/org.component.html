@@ -1,4 +1,6 @@
 
+
+
 <div class="row">
    
     <div class="col-xl-12">
@@ -13,7 +15,9 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table *ngIf="items.length" class="table table-hover">
+                <div *ngIf="loading">Loading...</div>
+                <div *ngIf="error" class="text-danger">{{ error }}</div>
+                <table *ngIf="!loading && items?.length" class="table table-hover">
                     <thead><tr><th>Id</th><th>Name</th><th>City</th><th>Actions</th></tr></thead>
                     <tbody>
                         <tr *ngFor="let o of items">
@@ -21,46 +25,14 @@
                             <td>{{ o.orgName }}</td>
                             <td>{{ o.city }}</td>
                             <td>
-                                <button (click)="edit(o.organizationId)">Edit</button>
-                                <button (click)="delete(o.organizationId)">Delete</button>
+
+                                <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(o.organizationId)">Edit</button>
+                                <button class="btn btn-sm btn-outline-danger" (click)="delete(o.organizationId)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <!--  <table class="table table-hover">
-         <thead>
-             <tr>
-                 <th>#</th>
-                 <th>Name</th>
-                 <th>Address</th>
-                 <th>Contact</th>
-                 <th>Action</th>
-             </tr>
-         </thead>
-         <tbody>
-             <tr>
-                 <th scope="row">1</th>
-                 <td>Mark</td>
-                 <td>Otto</td>
-                 <td>&#64;mdo</td>
-                 <td><a href="#"> View</a></td>
-             </tr>
-             <tr>
-                 <th scope="row">2</th>
-                 <td>Jacob</td>
-                 <td>Thornton</td>
-                 <td>&#64;fat</td>
-                 <td><a href="#"> View</a></td>
-             </tr>
-             <tr>
-                 <th scope="row">3</th>
-                 <td>Larry</td>
-                 <td>the Bird</td>
-                 <td>&#64;twitter</td>
-                 <td><a href="#"> View</a></td>
-             </tr>
-         </tbody>
-     </table> -->
+                <div *ngIf="!loading && (!items || items.length === 0)" class="mt-3">No organizations found.</div>
             </div>
         </app-card>
     </div>

@@ -1,5 +1,5 @@
 export interface OrganizationMaster {
-  organizationId?: number;
+  organizationId: number;
   regNo?: string;
   orgName?: string;
   city?: string;
@@ -11,7 +11,7 @@ export interface OrganizationMaster {
   contactNo: number;
   alterNetNo: number;
   email: string;
-  logoPath: number;
+  logoPath: string;
   createdBy: string;
   createdOn: Date;
   updatedBy: string;

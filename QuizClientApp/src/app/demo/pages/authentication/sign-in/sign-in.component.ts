@@ -23,7 +23,7 @@ export class SignInComponent {
     this.userService.login(this.userName, this.password).subscribe({
       next: user => {
         //console.log('logged in', user);
-        this.router.navigateByUrl('/', { replaceUrl: true });
+        this.router.navigateByUrl('/analytics', { replaceUrl: true });
       },
       error: err => {
         console.error('login error', err);

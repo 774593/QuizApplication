@@ -11,7 +11,7 @@ import { SubjectMaster } from '../models/subject.model';
 export class SubjectService {
   private base = `${environment.apiUrl}/SubjectMaster`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<SubjectMaster[]> {
     return this.http.get<SubjectMaster[]>(this.base).pipe(catchError(this.handleError));
@@ -26,7 +26,16 @@ export class SubjectService {
   }
 
   create(subject: SubjectMaster): Observable<SubjectMaster> {
-    return this.http.post<SubjectMaster>(this.base, subject).pipe(catchError(this.handleError));
+    return this.http.post<SubjectMaster>(this.base, subject).pipe(
+      catchError((err) => {
+        // Log the full server response for inspection (validation errors live in err.error)
+        console.error('Subject create HTTP error', err);
+        if (err && err.error) {
+          console.error('Server response body:', err.error);
+        }
+        return throwError(() => err);
+      })
+    );
   }
 
   update(id: number, subject: SubjectMaster): Observable<void> {

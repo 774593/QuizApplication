@@ -1,18 +1,38 @@
-<div>
-    <h2>Subject Experts</h2>
-    <button (click)="create()">Create</button>
-    <table *ngIf="experts.length">
-        <thead><tr><th>RegNo</th><th>Email</th><th>Expertise</th><th>Actions</th></tr></thead>
-        <tbody>
-            <tr *ngFor="let e of experts">
-                <td>{{ e.regNo }}</td>
-                <td>{{ e.email }}</td>
-                <td>{{ e.subExperties }}</td>
-                <td>
-                    <button (click)="edit(e.regNo)">Edit</button>
-                    <button (click)="delete(e.regNo)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Subject Experts" blockClass="table-border-style">
+            <div class="row mb-2">
+                <div class="col-sm-11"></div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-primary" (click)="create()" ngbTooltip="Add Expert">+</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <div *ngIf="loading" class="mb-2">Loading...</div>
+                <div *ngIf="!loading && experts?.length === 0" class="mt-3">No experts found.</div>
+                <table class="table table-hover" *ngIf="!loading && experts?.length">
+                    <thead>
+                        <tr>
+                            <th>RegNo</th>
+                            <th>Email</th>
+                            <th>Expertise</th>
+                            <th style="width:180px">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let e of experts">
+                            <td>{{ e.regNo }}</td>
+                            <td>{{ e.email }}</td>
+                            <td>{{ e.subExperties }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(e.regNo)">Edit</button>
+                                <button class="btn btn-sm btn-outline-danger" (click)="delete(e.regNo)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
 </div>

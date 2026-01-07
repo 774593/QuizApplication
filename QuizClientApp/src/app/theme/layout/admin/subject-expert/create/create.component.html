@@ -1,1 +1,33 @@
-<p>create works!</p>
+<div class="subject-expert-form">
+    <h3>Create Subject Expert</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+            <label class="form-label">RegNo</label>
+            <input class="form-control" formControlName="regNo" />
+            <div *ngIf="form.controls['regNo'].invalid && form.controls['regNo'].touched" class="text-danger">
+                Registration number is required.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control" formControlName="email" />
+            <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="text-danger">
+                Enter a valid email.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="pwd" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Expertise</label>
+            <input class="form-control" formControlName="subExperties" />
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid || submitting">Create</button>
+        <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancel</button>
+    </form>
+</div>

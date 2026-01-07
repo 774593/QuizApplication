@@ -1,11 +1,20 @@
-
 import { Component, OnInit } from '@angular/core';
+import { SharedModule } from '../../../shared/shared.module';
 import { SubExpert } from '../../../../models/sub-expert.model';
 import { SubjectExpertService } from '../../../../services/subject-expert.service';
+
+
 import { Router } from '@angular/router';
+
+
+
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+
 @Component({
   selector: 'app-subject-expert',
-  imports: [],
+  imports: [SharedModule],
   templateUrl: './subject-expert.component.html',
   styleUrl: './subject-expert.component.scss',
 })
@@ -24,7 +33,7 @@ export class SubjectExpertComponent implements OnInit {
     this.svc.getAll().subscribe({ next: data => { this.experts = data; this.loading = false; }, error: () => this.loading = false });
   }
 
-  create() { this.router.navigate(['/experts/new']); }
+  create() { this.router.navigate(['/experts/']); }
   edit(regNo: string) { this.router.navigate(['/experts', regNo, 'edit']); }
   delete(regNo: string) {
     if (!confirm('Delete expert?')) return;

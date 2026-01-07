@@ -29,7 +29,7 @@ namespace QuizServer.Controllers
         [HttpGet("{regNo}")]
         public async Task<ActionResult<SubExpert>> GetByRegNo(string regNo)
         {
-            if (string.IsNullOrWhiteSpace(regNo)) return BadRequest("Registration number is required.");
+            if (string.IsNullOrWhiteSpace(regNo.ToString())) return BadRequest("Registration number is required.");
 
             var expert = await _subjectExpertRepo.getExpertByRegNoAsync(regNo);
             if (expert == null) return NotFound();
@@ -62,7 +62,7 @@ namespace QuizServer.Controllers
         public async Task<ActionResult<SubExpert>> CreateExpert([FromBody] SubExpert expert)
         {
             if (expert == null) return BadRequest("Subject expert data is invalid.");
-            if (string.IsNullOrWhiteSpace(expert.RegNo)) return BadRequest("RegNo is required.");
+            if (string.IsNullOrWhiteSpace(expert.RegNo.ToString())) return BadRequest("RegNo is required.");
 
             await _subjectExpertRepo.addExpertAsync(expert);
 
@@ -73,7 +73,7 @@ namespace QuizServer.Controllers
         [HttpPut("{regNo}")]
         public async Task<IActionResult> UpdateExpert(string regNo, [FromBody] SubExpert expert)
         {
-            if (string.IsNullOrWhiteSpace(regNo)) return BadRequest("Registration number is required.");
+            if (string.IsNullOrWhiteSpace(regNo.ToString())) return BadRequest("Registration number is required.");
             if (expert == null) return BadRequest("Subject expert data is invalid.");
 
             var existing = await _subjectExpertRepo.getExpertByRegNoAsync(regNo);
@@ -90,7 +90,7 @@ namespace QuizServer.Controllers
         [HttpDelete("{regNo}")]
         public async Task<IActionResult> DeleteExpert(string regNo)
         {
-            if (string.IsNullOrWhiteSpace(regNo)) return BadRequest("Registration number is required.");
+            if (string.IsNullOrWhiteSpace(regNo.ToString())) return BadRequest("Registration number is required.");
 
             var existing = await _subjectExpertRepo.getExpertByRegNoAsync(regNo);
             if (existing == null) return NotFound();

@@ -24,12 +24,13 @@ const routes: Routes = [
         pathMatch: 'full'
       },
 
-      {
+      //{
 
-        path: 'homepage',
-        loadComponent: () => import('./app.component').then((c) => c.AppComponent)
-      },
-
+      //  path: 'homepage',
+      //  loadComponent: () => import('./app.component').then((c) => c.AppComponent)
+      //},
+      { path: '', redirectTo: 'analytics', pathMatch: 'full' },
+      { path: 'analytics', loadComponent: () => import('./demo/dashboard/dash-analytics.component').then(c => c.DashAnalyticsComponent) },
 
       {
         path: 'organization',

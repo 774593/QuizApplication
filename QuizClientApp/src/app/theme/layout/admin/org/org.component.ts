@@ -3,6 +3,11 @@ import { SharedModule } from '../../../shared/shared.module';
 import { Router } from '@angular/router';
 import { OrganizationMaster } from '../../../../models/organization.model';
 import { OrganizationService } from '../../../../services/organization.service';
+
+
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 @Component({
   selector: 'app-org',
   imports: [SharedModule],
@@ -11,10 +16,42 @@ import { OrganizationService } from '../../../../services/organization.service';
 })
 export class OrgComponent implements OnInit {
   items: OrganizationMaster[] = [];
+  loading = false;
+  error = '';
+
   constructor(private svc: OrganizationService, private router: Router) { }
-  ngOnInit(): void { this.load(); }
-  load() { this.svc.getAll().subscribe(data => this.items = data); }
-  create() { this.router.navigate(['/addorganization']); }
-  edit(id?: number) { if (id != null) this.router.navigate(['/editorganization', id, 'edit']); }
-  delete(id?: number) { if (!confirm('Delete organization?') || id == null) return; this.svc.delete(id).subscribe(() => this.load()); }
+
+  ngOnInit(): void {
+    this.load();
+  }
+
+  load(): void {
+    this.loading = true;
+    this.error = '';
+    this.svc.getAll().subscribe({
+      next: data => { this.items = data; this.loading = false; },
+      error: err => { this.error = err?.message || 'Failed to load organizations'; this.loading = false; }
+    });
+  }
+
+  create(): void {
+    // route defined as 'addorganization' in your routing — navigate there
+    this.router.navigate(['/addorganization']);
+  }
+
+  edit(id?: number): void {
+    if (id == null) return;
+    // route 'editorganization' exists in routing — navigate there and pass id via query or state as needed
+    // using query param here
+    this.router.navigate(['/editorganization'], { queryParams: { id } });
+  }
+
+  delete(id?: number): void {
+    if (id == null) return;
+    if (!confirm('Delete organization?')) return;
+    this.svc.delete(id).subscribe({
+      next: () => this.load(),
+      error: () => alert('Delete failed')
+    });
+  }
 }

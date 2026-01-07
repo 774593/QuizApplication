@@ -48,6 +48,10 @@ namespace QuizServer.Controllers
         [HttpPost]
         public async Task<ActionResult<SubjectMaster>> Create([FromBody] SubjectMaster subject)
         {
+            subject.CreatedBy = "Admin";
+            subject.CreatedOn = new DateOnly(2026, 1, 07);
+            subject.IsDeleted = "N";
+            subject.IsActive = "Y";
             if (subject == null) return BadRequest("Subject data is invalid.");
 
             await _subjectRepo.addSubjectAsync(subject);

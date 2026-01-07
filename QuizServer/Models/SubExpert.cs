@@ -23,7 +23,7 @@ public partial class SubExpert
 
     public string SubExperties { get; set; }
 
-    public byte[] ProfilePic { get; set; }
+    public string ProfilePic { get; set; }
 
     public string Pwd { get; set; }
 

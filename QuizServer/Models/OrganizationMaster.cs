@@ -7,7 +7,7 @@ namespace QuizServer.Models;
 
 public partial class OrganizationMaster
 {
-    public int OrganizationId { get; set; }
+    public int? OrganizationId { get; set; }
 
     public string RegNo { get; set; }
 
@@ -31,7 +31,7 @@ public partial class OrganizationMaster
 
     public string Email { get; set; }
 
-    public byte[] LogoPath { get; set; }
+    public string LogoPath { get; set; }
 
     public string CreatedBy { get; set; }
 

@@ -26,7 +26,16 @@ export class SubjectService {
   }
 
   create(subject: SubjectMaster): Observable<SubjectMaster> {
-    return this.http.post<SubjectMaster>(this.base, subject).pipe(catchError(this.handleError));
+    return this.http.post<SubjectMaster>(this.base, subject).pipe(
+      catchError((err) => {
+        // Log the full server response for inspection (validation errors live in err.error)
+        console.error('Subject create HTTP error', err);
+        if (err && err.error) {
+          console.error('Server response body:', err.error);
+        }
+        return throwError(() => err);
+      })
+    );
   }
 
   update(id: number, subject: SubjectMaster): Observable<void> {

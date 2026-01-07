@@ -37,7 +37,7 @@ namespace QuizServer.Controllers
         [HttpGet("ByRegNo/{regNo}")]
         public async Task<ActionResult<OrganizationMaster>> GetByRegNo(string regNo)
         {
-            if (string.IsNullOrWhiteSpace(regNo)) return BadRequest("RegNo is required.");
+            if (string.IsNullOrWhiteSpace(regNo.ToString())) return BadRequest("RegNo is required.");
             var org = await _orgRepo.getOrganizationByRegNoAsync(regNo);
             if (org == null) return NotFound();
             return Ok(org);
@@ -62,7 +62,7 @@ namespace QuizServer.Controllers
             await _orgRepo.addOrganizationAsync(organization);
 
             // assumes OrganizationMaster has OrganizationId populated after save
-            return CreatedAtAction(nameof(GetOrganizationById), new { id = organization.OrganizationId }, organization);
+            return CreatedAtAction(nameof(GetOrganizationById), new { id = organization.RegNo }, organization);
         }
 
         // PUT: api/OrganizationMaster/{id}
@@ -75,7 +75,7 @@ namespace QuizServer.Controllers
             if (existing == null) return NotFound();
 
             // ensure identity matches route
-            organization.OrganizationId = id;
+            organization.RegNo = id.ToString();
             await _orgRepo.updateOrganizationAsync(organization);
 
             return NoContent();

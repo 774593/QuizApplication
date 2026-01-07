@@ -78,7 +78,7 @@ public partial class PerfectQuizAppDBContext : DbContext
             entity.ToTable("OrganizationMaster");
 
             entity.Property(e => e.RegNo)
-                .HasMaxLength(30)
+                .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Address)
                 .HasMaxLength(30)
@@ -102,11 +102,11 @@ public partial class PerfectQuizAppDBContext : DbContext
             entity.Property(e => e.IsDeleted)
                 .HasMaxLength(10)
                 .IsFixedLength();
-            entity.Property(e => e.LogoPath).HasColumnType("image");
+            entity.Property(e => e.LogoPath).HasMaxLength(50);
             entity.Property(e => e.OrgName)
                 .HasMaxLength(30)
                 .IsUnicode(false);
-            entity.Property(e => e.OrganizationId).ValueGeneratedOnAdd();
+            entity.Property(e => e.OrganizationId).HasColumnName("organizationId");
             entity.Property(e => e.State).HasMaxLength(50);
             entity.Property(e => e.UpdatedBy).HasMaxLength(50);
         });
@@ -118,7 +118,7 @@ public partial class PerfectQuizAppDBContext : DbContext
             entity.ToTable("SubExpert");
 
             entity.Property(e => e.RegNo)
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Address)
                 .HasMaxLength(30)
@@ -140,7 +140,7 @@ public partial class PerfectQuizAppDBContext : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength();
             entity.Property(e => e.LastName).HasMaxLength(20);
-            entity.Property(e => e.ProfilePic).HasColumnType("image");
+            entity.Property(e => e.ProfilePic).HasMaxLength(50);
             entity.Property(e => e.Pwd).HasMaxLength(50);
             entity.Property(e => e.SubExperties)
                 .HasMaxLength(50)

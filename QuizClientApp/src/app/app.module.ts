@@ -15,8 +15,8 @@ import { AdminComponent } from './theme/layout/admin/admin.component'
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
- /* bootstrap: [SignInComponent]*/
+  /*bootstrap: [AppComponent]*/
+  bootstrap: [SignInComponent]
 /*  bootstrap: [AdminComponent]*/
 })
 export class AppModule { }

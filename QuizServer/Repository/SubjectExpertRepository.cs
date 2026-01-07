@@ -68,7 +68,7 @@ namespace QuizServer.Repository
         public async Task<SubExpert?> authenticateAsync(string regNoOrEmail, string pwd)
         {
             return await _context.SubExperts.FirstOrDefaultAsync(e =>
-                (e.RegNo == regNoOrEmail || e.Email == regNoOrEmail) && e.Pwd == pwd);
+                (e.RegNo == regNoOrEmail) && e.Pwd == pwd);
         }
 
         // --- Synchronous compatibility helpers (if existing callers expect them) ---
