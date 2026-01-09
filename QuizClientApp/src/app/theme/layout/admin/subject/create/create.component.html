@@ -1,15 +1,27 @@
-<div class="subject-form">
-    <h3>Create Subject</h3>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input class="form-control" formControlName="subName" />
-            <div *ngIf="form.controls['subName'].invalid && form.controls['subName'].touched" class="text-danger">
-                Name is required.
-            </div>
-        </div>
+<div class="row">
+    <div class="col-sm-12">
+        <app-card cardTitle="Add Organization">
+            <!--  <h5>Form controls</h5> -->
+            <small id="emailHelp" class="form-text text-muted">Please fill all details carefully.</small>
+            <hr />
 
-        <button class="btn btn-primary" type="submit" [disabled]="form.invalid || submitting">Create</button>
-        <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancel</button>
-    </form>
+            <div class="subject-form">
+                <h3>Create Subject</h3>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input class="form-control" formControlName="subName" />
+                        <div *ngIf="form.controls['subName'].invalid && form.controls['subName'].touched" class="text-danger">
+                            Name is required.
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" [disabled]="form.invalid || submitting">Create</button>
+                    <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancel</button>
+                </form>
+            </div>
+
+        </app-card>
+    </div>
+
 </div>

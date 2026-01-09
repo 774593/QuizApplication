@@ -15,6 +15,8 @@
                     <thead>
                         <tr>
                             <th>RegNo</th>
+                            <th>Name</th>
+                            <th>Contact No</th>
                             <th>Email</th>
                             <th>Expertise</th>
                             <th style="width:180px">Actions</th>
@@ -23,6 +25,8 @@
                     <tbody>
                         <tr *ngFor="let e of experts">
                             <td>{{ e.regNo }}</td>
+                            <td>{{ e.firstName }} {{ e.lastName }} </td>
+                            <td>{{ e.contactNo }}</td>
                             <td>{{ e.email }}</td>
                             <td>{{ e.subExperties }}</td>
                             <td>

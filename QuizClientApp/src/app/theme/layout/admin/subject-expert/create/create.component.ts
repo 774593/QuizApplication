@@ -23,6 +23,24 @@ export class CreateComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       pwd: ['', Validators.required],
       subExperties: [''],
+      regDate: [null],
+
+      firstName: ['', Validators.required],
+
+      lastName: ['', Validators.required],
+
+      address: ['', Validators.required],
+
+      contactNo: ['', Validators.required],
+
+      profilePic:[null],
+ 
+      createdBy: ['Admin', Validators.required],
+      createdOn: [new Date()],
+      updatedBy: [''],
+      updatedOn: [null],
+      isActive: ['Y'],
+      isDeleted: ['N']
       // add other fields if your model requires them
     });
   }
@@ -54,6 +72,10 @@ export class CreateComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/subjectexpert']);
+    this.router.navigate(['app/subjectexpert']);
+  }
+
+  back() {
+    this.router.navigate(['app/subjectexpert']);
   }
 }
