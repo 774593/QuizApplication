@@ -24,7 +24,9 @@ export class OrganizationService {
   getByRegNo(regNo: string): Observable<OrganizationMaster> {
     return this.http.get<OrganizationMaster>(`${this.base}/ByRegNo/${encodeURIComponent(regNo)}`).pipe(catchError(this.handleError));
   }
-
+  getByRegNoPwd(regNo: string, pwd: string): Observable<OrganizationMaster> {
+    return this.http.get<OrganizationMaster>(`${this.base}/ByRegNo/${encodeURIComponent(regNo)}`).pipe(catchError(this.handleError));
+  }
   getByName(name: string): Observable<OrganizationMaster> {
     return this.http.get<OrganizationMaster>(`${this.base}/ByName/${encodeURIComponent(name)}`).pipe(catchError(this.handleError));
   }

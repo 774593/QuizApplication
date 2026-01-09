@@ -44,4 +44,6 @@ public partial class OrganizationMaster
     public string IsActive { get; set; }
 
     public string IsDeleted { get; set; }
+
+    public string Pwd { get; set; }
 }

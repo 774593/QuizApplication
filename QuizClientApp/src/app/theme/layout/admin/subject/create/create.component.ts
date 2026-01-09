@@ -54,7 +54,7 @@ export class CreateComponent implements OnInit {
     };
 
     this.svc.create(payload).subscribe({
-      next: () => this.router.navigate(['/subject']),
+      next: () => this.router.navigate(['app/subject']),
       error: (err) => {
         console.error('Create failed', err);
         // If the API returned validation errors, show them to the user

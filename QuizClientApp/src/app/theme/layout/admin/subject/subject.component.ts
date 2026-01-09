@@ -32,7 +32,7 @@ export class SubjectComponent implements OnInit {
   }
 
   create(): void {
-    this.router.navigate(['/createsubject']);
+    this.router.navigate(['app/createsubject']);
   }
 
   edit(id?: number): void {

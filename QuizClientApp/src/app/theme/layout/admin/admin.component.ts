@@ -12,6 +12,8 @@ import { LayoutStateService } from '../../shared/service/layout-state.service';
 
 @Component({
   selector: 'app-admin',
+  /*standalone: true,*/
+
   imports: [RouterModule, NavBarComponent, NavigationComponent, CommonModule, BreadcrumbComponent, Footer],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
@@ -44,16 +46,16 @@ export class AdminComponent {
 
   // public method
   navMobClick() {
-    // if (this.windowWidth < 992) {
-    //   if (this.navCollapsedMob && !document.querySelector('app-navigation.pcoded-navbar')?.classList.contains('mob-open')) {
-    //     this.navCollapsedMob = !this.navCollapsedMob;
-    //     setTimeout(() => {
-    //       this.navCollapsedMob = !this.navCollapsedMob;
-    //     }, 100);
-    //   } else {
-    //     this.navCollapsedMob = !this.navCollapsedMob;
-    //   }
-    // }
+     if (this.windowWidth < 992) {
+       if (this.navCollapsedMob && !document.querySelector('app-navigation.pcoded-navbar')?.classList.contains('mob-open')) {
+         this.navCollapsedMob = !this.navCollapsedMob;
+         setTimeout(() => {
+           this.navCollapsedMob = !this.navCollapsedMob;
+         }, 100);
+       } else {
+         this.navCollapsedMob = !this.navCollapsedMob;
+       }
+     }
     this.layoutState.toggleNavCollapsedMob();
   }
 

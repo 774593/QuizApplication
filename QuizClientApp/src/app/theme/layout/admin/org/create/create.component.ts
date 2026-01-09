@@ -22,25 +22,26 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       organizationId: [null],
-      regNo: [''],
+      regNo: ['', Validators.required],
       orgName: ['', Validators.required],
-      city: [''],
+      city: ['', Validators.required],
      
       regDate: [''],
-      contactPersonFname: [''],
-      contactPersonLname: [''],
-      address: [''],
-      state: [''],
-      contactNo: [''],
+      contactPersonFname: ['', Validators.required],
+      contactPersonLname: ['', Validators.required],
+      address: ['', Validators.required],
+      state: ['', Validators.required], 
+      contactNo: ['', Validators.required],
       alterNetNo: [''],
       email: [''],
+      pwd: ['', Validators.required],
       logoPath: [''],
-      createdBy: [''],
-      createdOn: [''],
-      updatedBy: [''],
-      updatedOn: [''],
-      isActive: [''],
-      isDeleted: ['']
+      createdBy: [null],
+      createdOn: [null],
+      updatedBy: [null],
+      updatedOn: [null],
+      isActive: ['Y'],
+      isDeleted: ['N']
     });
 
     this.idParam = this.route.snapshot.paramMap.get('id');
@@ -51,7 +52,7 @@ export class CreateComponent implements OnInit {
   }
   back(): void {
     // route defined as 'addorganization' in your routing — navigate there
-    this.router.navigate(['/organization']);
+    this.router.navigate(['app/organization']);
   }
   submit() {
     
@@ -60,7 +61,7 @@ export class CreateComponent implements OnInit {
     if (this.editing && this.idParam) {
       this.svc.update(Number(this.idParam), value).subscribe(() => this.router.navigate(['/organizations']));
     } else {
-      this.svc.create(value).subscribe(() => this.router.navigate(['/organizations']));
+      this.svc.create(value).subscribe(() => this.router.navigate(['app/organizations']));
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuizServer.Models;
 using QuizServer.Repository;
 
@@ -42,7 +43,16 @@ namespace QuizServer.Controllers
             if (org == null) return NotFound();
             return Ok(org);
         }
-
+        // GET: api/OrganizationMaster/ByRegNo/{regNo}
+        [HttpGet("ByRegNoPwd/{regNoPwd}")]
+        public async Task<ActionResult<OrganizationMaster>> GetByRegNoPwd(string regNo,string pwd)
+        {
+            if (string.IsNullOrWhiteSpace(regNo.ToString())) return BadRequest("Username is required.");
+            if (string.IsNullOrWhiteSpace(pwd.ToString())) return BadRequest("Password is required.");
+            var org = await _orgRepo.getOrganizationByRegNoPwdAsync(regNo,pwd);
+            if (org == null) return NotFound();
+            return Ok(org);
+        }
         // GET: api/OrganizationMaster/ByName/{name}
         [HttpGet("ByName/{name}")]
         public async Task<ActionResult<OrganizationMaster>> GetByName(string name)
@@ -57,13 +67,17 @@ namespace QuizServer.Controllers
         [HttpPost]
         public async Task<ActionResult<OrganizationMaster>> CreateOrganization([FromBody] OrganizationMaster organization)
         {
+            organization.OrganizationId = await _orgRepo.GetMaxOrganizationIdAsync() + 1 ;
             if (organization == null) return BadRequest("Organization data is invalid.");
 
             await _orgRepo.addOrganizationAsync(organization);
 
             // assumes OrganizationMaster has OrganizationId populated after save
-            return CreatedAtAction(nameof(GetOrganizationById), new { id = organization.RegNo }, organization);
+            return CreatedAtAction(nameof(GetOrganizationById), new { id = organization.OrganizationId }, organization);
         }
+
+       
+
 
         // PUT: api/OrganizationMaster/{id}
         [HttpPut("{id:int}")]

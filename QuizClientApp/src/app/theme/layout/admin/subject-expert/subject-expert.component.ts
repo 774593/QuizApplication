@@ -33,7 +33,7 @@ export class SubjectExpertComponent implements OnInit {
     this.svc.getAll().subscribe({ next: data => { this.experts = data; this.loading = false; }, error: () => this.loading = false });
   }
 
-  create() { this.router.navigate(['/experts/']); }
+  create() { this.router.navigate(['app/createsubjectexpert']); }
   edit(regNo: string) { this.router.navigate(['/experts', regNo, 'edit']); }
   delete(regNo: string) {
     if (!confirm('Delete expert?')) return;

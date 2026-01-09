@@ -1,0 +1,15 @@
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  .auth-content {
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+.invalid-feedback {
+  display: block;
+}

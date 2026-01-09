@@ -11,15 +11,15 @@ public partial class SubjectMaster
 
     public string SubName { get; set; }
 
-    public string CreatedBy { get; set; } = null;
+    public string CreatedBy { get; set; }
 
-    public DateOnly? CreatedOn { get; set; } = null;
+    public DateOnly? CreatedOn { get; set; }
 
-    public string UpdatedBy { get; set; } = null;
+    public string UpdatedBy { get; set; }
 
-    public DateOnly? UpdatedOn { get; set; } = null;
+    public DateOnly? UpdatedOn { get; set; }
 
-    public string IsActive { get; set; } = null;
+    public string IsActive { get; set; }
 
-    public string IsDeleted { get; set; } = null;
+    public string IsDeleted { get; set; }
 }

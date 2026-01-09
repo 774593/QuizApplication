@@ -29,60 +29,12 @@ export const NavigationItems: NavigationItem[] = [
         id: 'dashboard',
         title: 'Dashboard',
         type: 'item',
-        url: '/analytics',
+        url: 'dashboard',
         icon: 'feather icon-home'
       }
     ]
   },
   
-  //{
-  //  id: 'Organization',
-  //  title: 'Organization',
-  //  type: 'group',
-  //  icon: 'icon-group',
-  //  children: [
-  //    {
-  //      id: 'Organization',
-  //      title: 'Create & Manage',
-  //      type: 'item',
-  //      url: '/organization',
-  //      classes: 'nav-item',
-  //      icon: 'feather icon-pie-chart'
-  //    }
-  //  ]
-  //},
-  //{
-  //  id: 'subject',
-  //  title: 'Subject',
-  //  type: 'group',
-  //  icon: 'icon-group',
-  //  children: [
-  //    {
-  //      id: 'subject',
-  //      title: 'Create & Manage',
-  //      type: 'item',
-  //      url: '/subject',
-  //      classes: 'nav-item',
-  //      icon: 'feather icon-pie-chart'
-  //    }
-  //  ]
-  //},
-  //{
-  //  id: 'chart',
-  //  title: 'Subject Expert',
-  //  type: 'group',
-  //  icon: 'icon-group',
-  //  children: [
-  //    {
-  //      id: 'apexchart',
-  //      title: 'Create & Manage',
-  //      type: 'item',
-  //      url: '/chart',
-  //      classes: 'nav-item',
-  //      icon: 'feather icon-pie-chart'
-  //    }
-  //  ]
-  //},
   {
     id: 'ui-component',
     title: 'Master Operations',
@@ -99,33 +51,38 @@ export const NavigationItems: NavigationItem[] = [
             id: 'button',
             title: 'Organization',
             type: 'item',
-            url: '/organization'
+            url: '/app/organization'
           },
           {
             id: 'badges',
             title: 'Subject',
             type: 'item',
-            url: '/subject'
+            url: '/app/subject'
           },
           {
             id: 'breadcrumb-pagination',
             title: 'Subject-Expert',
             type: 'item',
-            url: '/subjectexpert'
-          },
-         
-          {
-            id: 'tabs-pills',
-            title: 'event',
-            type: 'item',
-            url: '/event'
+            url: '/app/subjectexpert'
           },
           {
-            id: 'collapse',
-            title: 'Question Bank',
+            id: 'breadcrumb-pagination',
+            title: 'User',
             type: 'item',
-            url: '/questionbank'
-          }
+            url: '/app/subjectexpert'
+          },
+          //{
+          //  id: 'tabs-pills',
+          //  title: 'event',
+          //  type: 'item',
+          //  url: '/app/event'
+          //},
+          //{
+          //  id: 'collapse',
+          //  title: 'Question Bank',
+          //  type: 'item',
+          //  url: '/app/questionbank'
+          //}
           //{
           //  id: 'typography',
           //  title: 'Typography',
@@ -139,84 +96,84 @@ export const NavigationItems: NavigationItem[] = [
 
   {
     id: 'ui-component',
-    title: 'Events',
+    title: 'Quiz',
     type: 'group',
     icon: 'feather icon-menu',
     children: [
       {
         id: 'basic',
-        title: 'Events',
+        title: 'Quiz Operations',
         type: 'collapse',
         icon: 'feather icon-box',
         children: [
           {
             id: 'button',
-            title: 'Event',
+            title: 'Title',
             type: 'item',
             url: '/event'
+          },
+          {
+            id: 'badges',
+            title: 'Scheduling',
+            type: 'item',
+            url: '/instructions'
           },
           {
             id: 'badges',
             title: 'Instructions',
             type: 'item',
             url: '/instructions'
-          },
-          {
-            id: 'breadcrumb-pagination',
-            title: 'Scheduling',
-            type: 'item',
-            url: '/scheduling'
           }
-
+        
         ]
       }
     ]
   },
-  {
-    id: 'Authentication',
-    title: 'User',
-    type: 'group',
-    icon: 'icon-group',
-    children: [
-      {
-        id: 'signup',
-        title: 'Create & Manage',
-        type: 'item',
-        url: '/register',
-        icon: 'feather icon-log-in',
-        target: true,
-        breadcrumbs: false
-      },
+  //{
+  //  id: 'Authentication',
+  //  title: 'User',
+  //  type: 'group',
+  //  icon: 'icon-group',
+  //  children: [
+  //    {
+  //      id: 'signup',
+  //      title: 'Create & Manage',
+  //      type: 'item',
+  //      url: '/register',
+  //      icon: 'feather icon-log-in',
+  //      target: true,
+  //      breadcrumbs: false
+  //    },
 
-      //{
-      //  id: 'signin',
-      //  title: 'Quiz Schedule',
-      //  type: 'item',
-      //  url: '/login',
-      //  icon: 'feather icon-log-in',
-      //  target: true,
-      //  breadcrumbs: false
-      //},
-      //{
-      //  id: 'signin',
-      //  title: 'Quiz Activities',
-      //  type: 'item',
-      //  url: '/login',
-      //  icon: 'feather icon-log-in',
-      //  target: true,
-      //  breadcrumbs: false
-      //},
-      // {
-      //  id: 'signin',
-      //  title: 'Question Bank',
-      //  type: 'item',
-      //  url: '/login',
-      //  icon: 'feather icon-log-in',
-      //  target: true,
-      //  breadcrumbs: false
-      //}
-    ]
-  },
+  //    //{
+  //    //  id: 'signin',
+  //    //  title: 'Quiz Schedule',
+  //    //  type: 'item',
+  //    //  url: '/login',
+  //    //  icon: 'feather icon-log-in',
+  //    //  target: true,
+  //    //  breadcrumbs: false
+  //    //},
+  //    //{
+  //    //  id: 'signin',
+  //    //  title: 'Quiz Activities',
+  //    //  type: 'item',
+  //    //  url: '/login',
+  //    //  icon: 'feather icon-log-in',
+  //    //  target: true,
+  //    //  breadcrumbs: false
+  //    //},
+  //    // {
+  //    //  id: 'signin',
+  //    //  title: 'Question Bank',
+  //    //  type: 'item',
+  //    //  url: '/login',
+  //    //  icon: 'feather icon-log-in',
+  //    //  target: true,
+  //    //  breadcrumbs: false
+  //    //}
+  //  ]
+  //},
   {
     id: 'ui-component',
     title: 'Reports',
@@ -253,18 +210,43 @@ export const NavigationItems: NavigationItem[] = [
             type: 'item',
             url: '/component/collapse'
           }
-          //{
-          //  id: 'tabs-pills',
-          //  title: 'Tabs & Pills',
-          //  type: 'item',
-          //  url: '/component/tabs-pills'
-          //},
-          //{
-          //  id: 'typography',
-          //  title: 'Typography',
-          //  type: 'item',
-          //  url: '/component/typography'
-          //}
+       
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ui-component',
+    title: 'Question Bank',
+    type: 'group',
+    icon: 'feather icon-menu',
+    children: [
+      {
+        id: 'basic',
+        title: 'Question Bank ',
+        type: 'collapse',
+        icon: 'feather icon-box',
+        children: [
+          {
+            id: 'button',
+            title: 'First',
+            type: 'item',
+            url: '/component/button'
+          },
+          {
+            id: 'button',
+            title: 'Second',
+            type: 'item',
+            url: '/component/button'
+          },
+          {
+            id: 'badges',
+            title: 'Third',
+            type: 'item',
+            url: '/component/badges'
+          }
+         
+
         ]
       }
     ]

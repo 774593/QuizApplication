@@ -107,6 +107,9 @@ public partial class PerfectQuizAppDBContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false);
             entity.Property(e => e.OrganizationId).HasColumnName("organizationId");
+            entity.Property(e => e.Pwd)
+                .HasMaxLength(50)
+                .HasColumnName("pwd");
             entity.Property(e => e.State).HasMaxLength(50);
             entity.Property(e => e.UpdatedBy).HasMaxLength(50);
         });

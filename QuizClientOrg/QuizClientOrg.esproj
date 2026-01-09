@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2752196">
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <!-- Allows the build (or compile) script located on package.json to run on Build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+    <!-- Folder where production build objects will be placed -->
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\QuizClientOrg\browser\</BuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="src\assets\vendor\bootstrap\js\**" />
+    <None Remove="src\assets\vendor\chart.js\**" />
+    <None Remove="src\assets\vendor\clock-picker\**" />
+    <None Remove="src\assets\vendor\fontawesome-free\**" />
+    <None Remove="src\assets\vendor\select2\**" />
+    <TypeScriptConfiguration Remove="src\assets\vendor\bootstrap\js\**" />
+    <TypeScriptConfiguration Remove="src\assets\vendor\chart.js\**" />
+    <TypeScriptConfiguration Remove="src\assets\vendor\clock-picker\**" />
+    <TypeScriptConfiguration Remove="src\assets\vendor\fontawesome-free\**" />
+    <TypeScriptConfiguration Remove="src\assets\vendor\select2\**" />
+  </ItemGroup>
+</Project>

@@ -8,12 +8,16 @@ namespace QuizServer.Repository
         public OrganizationMasterRepository(PerfectQuizAppDBContext context) : base(context)
         {
         }
-
+        public async Task<int> GetMaxOrganizationIdAsync()
+        {
+            return await _context.OrganizationMasters
+                                 .MaxAsync(o => (int?)o.OrganizationId) ?? 0;
+        }
         // Async CRUD + queries
 
         public async Task<IEnumerable<OrganizationMaster>> getAllOrganizationsAsync()
         {
-            return await _context.OrganizationMasters.ToListAsync();
+            return await _context.OrganizationMasters.OrderBy(o => o.OrganizationId).ToListAsync();
         }
 
         public async Task<OrganizationMaster?> getOrganizationByIdAsync(int id)
@@ -26,7 +30,11 @@ namespace QuizServer.Repository
             if (string.IsNullOrWhiteSpace(regNo.ToString())) return null;
             return await _context.OrganizationMasters.FirstOrDefaultAsync(o => o.RegNo == regNo);
         }
-
+        public async Task<OrganizationMaster?> getOrganizationByRegNoPwdAsync(string regNo,string pwd)
+        {
+            if (string.IsNullOrWhiteSpace(regNo.ToString())) return null;
+            return await _context.OrganizationMasters.FirstOrDefaultAsync(o => o.RegNo == regNo && o.Pwd==pwd);
+        }
         public async Task<OrganizationMaster?> getOrganizationByNameAsync(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) return null;

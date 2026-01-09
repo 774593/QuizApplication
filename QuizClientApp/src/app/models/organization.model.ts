@@ -18,7 +18,7 @@ export interface OrganizationMaster {
   updatedOn: Date;
   isActive: string;
   isDeleted: string;
-  
+  pwd: string;
 
   // add other fields if present on the server model
 }

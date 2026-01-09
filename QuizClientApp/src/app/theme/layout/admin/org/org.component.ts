@@ -36,14 +36,12 @@ export class OrgComponent implements OnInit {
 
   create(): void {
     // route defined as 'addorganization' in your routing — navigate there
-    this.router.navigate(['/addorganization']);
+    this.router.navigate(['app/addorganization']);
   }
 
   edit(id?: number): void {
     if (id == null) return;
-    // route 'editorganization' exists in routing — navigate there and pass id via query or state as needed
-    // using query param here
-    this.router.navigate(['/editorganization'], { queryParams: { id } });
+    this.router.navigate(['app/addorganization'], { queryParams: { id } });
   }
 
   delete(id?: number): void {

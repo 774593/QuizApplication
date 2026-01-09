@@ -1,0 +1,63 @@
+<div class="auth-wrapper">
+    <div class="auth-content">
+        <div class="card">
+            <div class="row align-items-center text-center">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="login()">
+                            <h4>Quiz App</h4>
+                            <h6 class="mb-3 f-w-400">Member Login</h6>
+
+                            <div class="input-group mb-3">
+                                <input formControlName="userName"
+                                       type="text"
+                                       class="form-control"
+                                       [class.is-invalid]="submitted() && form.get('userName')?.invalid"
+                                       placeholder="Username" />
+                                <div class="invalid-feedback" *ngIf="submitted() && getFieldErrors('userName').length">
+                                    <div *ngFor="let err of getFieldErrors('userName'); trackBy: trackByIndex">
+                                        {{ err }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-4">
+                                <input [type]="showPassword ? 'text' : 'password'"
+                                       formControlName="password"
+                                       id="password"
+                                       class="form-control"
+                                       [class.is-invalid]="submitted() && form.get('password')?.invalid"
+                                       placeholder="Password (min. 8 characters)" />
+                                <button type="button" class="btn btn-outline-secondary ms-2" (click)="toggleShowPassword()">
+                                    {{ showPassword ? 'Hide' : 'Show' }}
+                                </button>
+
+                                <div class="invalid-feedback" *ngIf="submitted() && getFieldErrors('password').length">
+                                    <div *ngFor="let err of getFieldErrors('password'); trackBy: trackByIndex">
+                                        {{ err }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-start mt-2">
+                                <div class="checkbox checkbox-primary d-inline">
+                                    <input type="checkbox" formControlName="saveCredentials" id="checkbox-fill-a1" />
+                                    <label for="checkbox-fill-a1" class="cr">Save credentials</label>
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-block btn-primary mb-4">Signin</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-primary" (click)="create()" ngbTooltip="Add Subject">+</button>
+                                <!--    <button class="btn btn-primary" (click)="create()">Add Subject</button> -->
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

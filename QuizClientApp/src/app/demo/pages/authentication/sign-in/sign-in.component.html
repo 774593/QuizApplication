@@ -1,75 +1,60 @@
-
-
 <div class="auth-wrapper">
-  <div class="auth-content">
-    <div class="card">
-      <div class="row align-items-center text-center">
-        <div class="col-md-12">
-          <div class="card-body">
-            <form (ngSubmit)="login()">
-              <!-- <img src="assets/images/logo-dark.png" alt="logo" class="img-fluid mb-4" /> -->
-              <h4>Quiz App</h4>
-              <h6 class="mb-3 f-w-400">Member Login</h6>
-              <div class="input-group mb-3">
-                <input [(ngModel)]="userName" name="userName"
-                  type="text"
-                  class="form-control"
-                
-                  [class.is-invalid]="submitted() && loginForm.email().invalid()"
-                  placeholder="Username"
-                  [field]="loginForm.email"
-                />
-                @if (submitted() && loginForm.email().invalid()) {
-                  <div class="invalid-feedback">
-                    @for (error of loginForm.email().errors(); track error.kind) {
-                      <div>{{ error.message }}</div>
-                    }
-                  </div>
-                }
-              </div>
-              <div class="input-group mb-4">
-                @if (!showPassword()) {
-                  <input
-                    type="password" [(ngModel)]="password" name="password"
-                    id="password"
-                    class="form-control"
-                    [field]="loginForm.password"
-                    [class.is-invalid]="submitted() && loginForm.password().errors().length > 0"
-                    placeholder="Password (min. 8 characters)"
-                  />
-                } @else {
-                  <input
-                    type="text" [(ngModel)]="password" name="password"
-                    id="password"
-                    class="form-control"
-                    [field]="loginForm.password"
-                    [class.is-invalid]="submitted() && loginForm.password().errors().length > 0"
-                    placeholder="Password (min. 8 characters)"
-                  />
-                }
-                @if (submitted() && loginForm.password().errors().length > 0) {
-                  <div class="invalid-feedback">
-                    @for (error of loginForm.password().errors(); track error.kind) {
-                      <div>{{ error.message }}</div>
-                    }
-                  </div>
-                }
-              </div>
-              <div class="form-group text-start mt-2">
-                <div class="checkbox checkbox-primary d-inline">
-                  <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="" />
-                  <label for="checkbox-fill-a1" class="cr">Save credentials</label>
-                </div>
-              </div>
-              <div class="d-grid">
-                  <button type="submit" class="btn btn-block btn-primary mb-4">Signin</button>
-              </div>
-         
-            </form>
-          
-          </div>
+    <div class="auth-content">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+                    <h4>Quiz App</h4>
+                    <h6 class="mb-3 f-w-400">Member Login</h6>
+
+                    <div class="input-group mb-3">
+                        <input formControlName="userName"
+                               type="text"
+                               class="form-control"
+                              
+                               placeholder="Username"
+                               autocomplete="username" />
+                   <!--      <div class="invalid-feedback" *ngIf="submitted && f.userName.errors">
+                            <div *ngIf="f.userName.errors['required']">Username is required.</div>
+                        </div> -->
+                    </div>
+
+                    <div class="input-group mb-4">
+                        <input formControlName="password"
+                               [type]="showPassword ? 'text' : 'password'"
+                               id="password"
+                               class="form-control"
+                             
+                               placeholder="Password (min. 8 characters)"
+                               autocomplete="current-password" />
+                        <button type="button" class="btn btn-outline-secondary ms-2" (click)="togglePassword()">
+                            {{ showPassword ? 'Hide' : 'Show' }}
+                        </button>
+
+                       <!--  <div class="invalid-feedback" *ngIf="submitted && f.password.errors">
+                            <div *ngIf="f.password.errors['required']">Password is required.</div>
+                            <div *ngIf="f.password.errors['minlength']">Password must be at least 8 characters.</div>
+                        </div> -->
+                    </div>
+
+                    <div class="form-group text-start mt-2 mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="saveCredentials" id="saveCredentials" />
+                            <label class="form-check-label" for="saveCredentials"> Save credentials</label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-block btn-primary mb-3" [disabled]="loading">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            Signin
+                        </button>
+                    </div>
+
+                    <div class="text-danger mt-2" *ngIf="serverError">
+                        {{ serverError }}
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
