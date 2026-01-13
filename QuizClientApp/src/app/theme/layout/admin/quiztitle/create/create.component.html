@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-12">
+        <app-card cardTitle="Add Quiz Title">
+            <!--  <h5>Form controls</h5> -->
+            <small id="emailHelp" class="form-text text-muted">Please fill all details carefully.</small>
+            <hr />
+
+            <div class="subject-form">
+                <!--    <h3>Create Subject</h3> -->
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input class="form-control" />
+
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Organization</label>
+
+                        <select class="form-control">
+                            <option>Organization 1</option>
+                            <option>Organization 2</option>
+                            <option>Organization 3</option>
+                        </select>
+
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Event</label>
+
+                        <select class="form-control">
+                            <option>Event 1</option>
+                            <option>Event 2</option>
+                            <option>Event 3</option>
+                        </select>
+
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Organization Logo</label>
+                        <input type="file" class="form-control" />
+
+
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Event Logo</label>
+                        <input type="file" class="form-control" />
+
+
+                    </div>
+                    <button class="btn btn-primary" type="submit">Create</button>
+                    <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancel</button>
+                </form>
+            </div>
+
+        </app-card>
+    </div>
+
+</div>

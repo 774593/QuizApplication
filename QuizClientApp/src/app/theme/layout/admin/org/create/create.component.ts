@@ -15,7 +15,9 @@ import { OrganizationService } from '../../../../../services/organization.servic
 export class CreateComponent implements OnInit {
   form!: FormGroup;
   editing = false;
-  idParam: string | null = null;
+  /*idParam: string | null = null;*/
+  idParam: number | null = null;
+    items: any;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private svc: OrganizationService) { }
 
@@ -43,12 +45,23 @@ export class CreateComponent implements OnInit {
       isActive: ['Y'],
       isDeleted: ['N']
     });
+    this.idParam = Number(this.route.snapshot.paramMap.get('id'));
+  
+    this.route.queryParams.subscribe(params => {
+      if (params['id']) {
+        this.idParam = Number(params['id']);
+        console.log('ID received:', this.idParam);
+        this.editing = true;
+          this.svc.getById(Number(this.idParam)).subscribe(
+                       data => this.form.patchValue(data)
+          );
+      } else {
+        console.log('No ID passed');
+      }
+    });
 
-    this.idParam = this.route.snapshot.paramMap.get('id');
-    if (this.idParam) {
-      this.editing = true;
-      this.svc.getById(Number(this.idParam)).subscribe(data => this.form.patchValue(data));
-    }
+
+
   }
   back(): void {
     // route defined as 'addorganization' in your routing — navigate there
@@ -59,7 +72,7 @@ export class CreateComponent implements OnInit {
     if (this.form.invalid) return;
     const value = this.form.value;
     if (this.editing && this.idParam) {
-      this.svc.update(Number(this.idParam), value).subscribe(() => this.router.navigate(['/organizations']));
+      this.svc.update(Number(this.idParam), value).subscribe(() => this.router.navigate(['app/organizations']));
     } else {
       this.svc.create(value).subscribe(() => this.router.navigate(['app/organizations']));
     }

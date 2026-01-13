@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SubjectService } from '../../../../../services/subject.service';
 
+import { SubjectService } from '../../../../../services/subject.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-create',
   imports: [SharedModule, NgbDropdownModule],
@@ -13,10 +13,14 @@ import { SubjectService } from '../../../../../services/subject.service';
 })
 export class CreateComponent implements OnInit {
   form!: FormGroup;
-  submitting = false;
-
-  constructor(private fb: FormBuilder, private router: Router, private svc: SubjectService) { }
-
+  editing = false;
+  /*idParam: string | null = null;*/
+  idParam: number | null = null;
+  items: any;
+    submitting = false;
+  
+  /*constructor(private fb: FormBuilder, private router: Router, private svc: SubjectService) { }*/
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private svc: SubjectService) { }
   ngOnInit(): void {
     this.form = this.fb.group({
       subId: [0],
@@ -28,6 +32,21 @@ export class CreateComponent implements OnInit {
       isActive: ['Y'],
       isDeleted: ['N']
     });
+    this.idParam = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.route.queryParams.subscribe(params => {
+      if (params['id']) {
+        this.idParam = Number(params['id']);
+        console.log('ID received:', this.idParam);
+        this.editing = true;
+        this.svc.getById(Number(this.idParam)).subscribe(
+          data => this.form.patchValue(data)
+        );
+      } else {
+        console.log('No ID passed');
+      }
+    });
+
   }
 
   private toDateOnly(value: Date | string | null): string | null {
@@ -80,6 +99,6 @@ export class CreateComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/subject']);
+    this.router.navigate(['app/subject']);
   }
 }

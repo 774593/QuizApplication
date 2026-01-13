@@ -4,96 +4,176 @@
             <!--  <h5>Form controls</h5> -->
             <small id="emailHelp" class="form-text text-muted">Please fill all details carefully.</small>
             <hr />
-            <form  [formGroup]="form" (ngSubmit)="submit()">
-                <div class="row">
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div *ngIf="editing">
+                    <div class="row">
 
-                    <div class="col-md-6">
+                        <div class="col-md-6">
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Reg. No/ Username</label>
-                            <input type="text" class="form-control" placeholder="Registration No" formControlName="regNo" required/>
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Reg. No/ Username</label>
+                                <input type="text" class="form-control" placeholder="Registration No" formControlName="regNo" required />
+                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            </div>
+                            <div class="form-group">
+                                <label>Organization Name</label>
+                                <input type="text" class="form-control" placeholder="Organization Name" formControlName="orgName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">City</label>
+
+                                <input type="text" class="form-control" placeholder="City" formControlName="city" />
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Person (First Name)</label>
+                                <input type="text" class="form-control" placeholder="Contact Person" formControlName="contactPersonFname" />
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Number</label>
+                                <input type="number" class="form-control" placeholder="Contact Number" formControlName="contactNo" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" placeholder="Password" formControlName="pwd" />
+                            </div>
+                            <div class="form-group">
+                                <label>Logo (Image)</label>
+                                <input type="file" class="form-control" placeholder="Username" formControlName="logoPath" />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
+                            <button type="button" class="btn btn-primary" (click)="back()" ngbTooltip="Add New Organization">Back</button>
                         </div>
-                        <div class="form-group">
-                            <label>Organization Name</label>
-                            <input type="text" class="form-control" placeholder="Organization Name" formControlName="orgName" />
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Re. Date</label>
+                                <input type="date" class="form-control" placeholder="Registration Date" formControlName="regDate" />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" rows="1" formControlName="address"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">State</label>
+
+                                <input type="text" class="form-control" placeholder="State" formControlName="state" />
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Person (Last Name)</label>
+                                <input type="text" class="form-control" placeholder="Contact Person" formControlName="contactPersonLname" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Alternet Number</label>
+                                <input type="number" class="form-control" placeholder="Alternet Number" formControlName="alterNetNo" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" placeholder="Enter email" formControlName="email" />
+                                <!--   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">City</label>
-                            <!-- <select class="form-control" id="exampleFormControlSelect1">
-            <option>City 1</option>
-            <option>City 2</option>
-            <option>City 3</option>
-            <option>City 4</option>
-            <option>City 5</option>
-        </select> -->
-                            <input type="text" class="form-control" placeholder="City" formControlName="city" />
-                        </div>
-                        <div class="form-group">
-                            <label>Contact Person (First Name)</label>
-                            <input type="text" class="form-control" placeholder="Contact Person" formControlName="contactPersonFname" />
-                        </div>
-                        <div class="form-group">
-                            <label>Contact Number</label>
-                            <input type="number" class="form-control" placeholder="Contact Number" formControlName="contactNo" />
-                        </div>
-                           <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control"  placeholder="Password" formControlName="pwd" />
-    </div>
-                        <div class="form-group">
-        <label>Logo (Image)</label>
-        <input type="file" class="form-control" placeholder="Username" formControlName="logoPath" />
-    </div>
-                        <!--    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> -->
-                        <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
-                        <button type="button" class="btn btn-primary" (click)="back()" ngbTooltip="Add New Organization">Back</button>
+
+
                     </div>
-                    <div class="col-md-6">
-
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Re. Date</label>
-                            <input type="date" class="form-control" placeholder="Registration Date" formControlName="regDate" />
-
-                        </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea class="form-control" rows="1" formControlName="address"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">State</label>
-                            <!-- <select class="form-control" id="exampleFormControlSelect1" formControlName="address">
-            <option>State 1</option>
-            <option>State 2</option>
-            <option>State 3</option>
-            <option>State 4</option>
-            <option>State 5</option>
-        </select> -->
-                            <input type="text" class="form-control" placeholder="State" formControlName="state" />
-                        </div>
-                        <div class="form-group">
-                            <label>Contact Person (Last Name)</label>
-                            <input type="text" class="form-control" placeholder="Contact Person" formControlName="contactPersonLname" />
-                        </div>
-
-
-                        <div class="form-group">
-                            <label>Alternet Number</label>
-                            <input type="number" class="form-control" placeholder="Alternet Number" formControlName="alterNetNo" />
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" placeholder="Enter email" formControlName="email" />
-                            <!--   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                        </div>
-                        
-                    </div>
-
-
                 </div>
+
+
+                <div *ngIf="!editing">
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Reg. No/ Username</label>
+                                <input type="text" class="form-control" placeholder="Registration No" formControlName="regNo" required />
+                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            </div>
+                            <div class="form-group">
+                                <label>Organization Name</label>
+                                <input type="text" class="form-control" placeholder="Organization Name" formControlName="orgName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">City</label>
+                                <!-- <select class="form-control" id="exampleFormControlSelect1">
+                        <option>City 1</option>
+                        <option>City 2</option>
+                        <option>City 3</option>
+                        <option>City 4</option>
+                        <option>City 5</option>
+                    </select> -->
+                                <input type="text" class="form-control" placeholder="City" formControlName="city" />
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Person (First Name)</label>
+                                <input type="text" class="form-control" placeholder="Contact Person" formControlName="contactPersonFname" />
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Number</label>
+                                <input type="number" class="form-control" placeholder="Contact Number" formControlName="contactNo" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" placeholder="Password" formControlName="pwd" />
+                            </div>
+                            <div class="form-group">
+                                <label>Logo (Image)</label>
+                                <input type="file" class="form-control" placeholder="Username" formControlName="logoPath" />
+                            </div>
+                            <!--    <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> -->
+                            <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
+                            <button type="button" class="btn btn-primary" (click)="back()" ngbTooltip="Add New Organization">Back</button>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Re. Date</label>
+                                <input type="date" class="form-control" placeholder="Registration Date" formControlName="regDate" />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" rows="1" formControlName="address"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">State</label>
+                                <!-- <select class="form-control" id="exampleFormControlSelect1" formControlName="address">
+                        <option>State 1</option>
+                        <option>State 2</option>
+                        <option>State 3</option>
+                        <option>State 4</option>
+                        <option>State 5</option>
+                    </select> -->
+                                <input type="text" class="form-control" placeholder="State" formControlName="state" />
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Person (Last Name)</label>
+                                <input type="text" class="form-control" placeholder="Contact Person" formControlName="contactPersonLname" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Alternet Number</label>
+                                <input type="number" class="form-control" placeholder="Alternet Number" formControlName="alterNetNo" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" placeholder="Enter email" formControlName="email" />
+                                <!--   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    </div>
             </form>
             
           

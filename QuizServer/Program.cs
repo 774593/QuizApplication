@@ -3,7 +3,6 @@ using QuizServer.Models;
 using QuizServer.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddControllers();
 
@@ -13,11 +12,23 @@ builder.Services.AddDbContext<PerfectQuizAppDBContext>(options =>
 
 builder.Services.AddTransient<UserMasterRepository>();
 builder.Services.AddTransient<SubjectExpertRepository>();
+builder.Services.AddTransient<EventRepository>();
+builder.Services.AddTransient<InstructionRepository>();
 
 builder.Services.AddTransient<CustomerMasterRepository>();
 builder.Services.AddTransient<OrganizationMasterRepository>();
 builder.Services.AddTransient<SubjectMasterRepository>();
-
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowQuizApp",
+//        policy =>
+//        {
+//            policy.WithOrigins("https://quizapp.perfectitspot.com")
+//                  .AllowAnyHeader()
+//                  .AllowAnyMethod()
+//                  .AllowCredentials();
+//        });
+//});
 // CORS: allow Angular dev server (adjust origins as needed)
 var angularDevOrigins = new[] { "http://localhost:4200", "https://localhost:4200" };
 builder.Services.AddCors(options =>
@@ -36,7 +47,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
@@ -48,7 +58,9 @@ app.UseHttpsRedirection();
 
 // Apply CORS policy before routing/authorization
 app.UseCors("AllowAngularDev");
+//app.UseCors("AllowQuizApp");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

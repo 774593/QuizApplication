@@ -8,8 +8,7 @@ namespace QuizServer.Repository
         public SubjectMasterRepository(PerfectQuizAppDBContext context) : base(context)
         {
         }
-
-        // Async methods
+                // Async methods
 
         public async Task<IEnumerable<SubjectMaster>> getAllSubjectsAsync()
         {

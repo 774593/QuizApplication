@@ -108,22 +108,34 @@ export const NavigationItems: NavigationItem[] = [
         children: [
           {
             id: 'button',
-            title: 'Title',
+            title: 'Events',
             type: 'item',
-            url: '/event'
-          },
-          {
-            id: 'badges',
-            title: 'Scheduling',
-            type: 'item',
-            url: '/instructions'
+            url: '/app/event'
           },
           {
             id: 'badges',
             title: 'Instructions',
             type: 'item',
-            url: '/instructions'
+            url: '/app/instructions'
+          },
+           {
+            id: 'badges',
+            title: 'Quiz Title',
+            type: 'item',
+             url: '/app/quiztitle'
           }
+          //{
+          //  id: 'badges',
+          //  title: 'Instructions',
+          //  type: 'item',
+          //  url: '/app/instructions'
+          //}
+          //{
+          //  id: 'badges',
+          //  title: 'Instructions',
+          //  type: 'item',
+          //  url: '/instructions'
+          //}
         
         ]
       }

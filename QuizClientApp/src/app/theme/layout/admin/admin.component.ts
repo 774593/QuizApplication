@@ -1,15 +1,16 @@
+
 // Angular Import
 import { Component, HostListener, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { Router } from '@angular/router';
 // Project Import
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 import { Footer } from './footer/footer';
 import { LayoutStateService } from '../../shared/service/layout-state.service';
-
+import { DashAnalyticsComponent } from '../../../demo/dashboard/dash-analytics.component';
 @Component({
   selector: 'app-admin',
   /*standalone: true,*/
@@ -27,9 +28,10 @@ export class AdminComponent {
   windowWidth: number;
 
   // constructor
-  constructor() {
+  constructor(private router: Router) {
     this.windowWidth = window.innerWidth;
     this.navCollapsedMob = false;
+    this.router.navigate(['app/default'])
   }
 
   @HostListener('window:resize', ['$event'])

@@ -15,6 +15,12 @@ public partial class PerfectQuizAppDBContext : DbContext
 
     public virtual DbSet<CustomerMaster> CustomerMasters { get; set; }
 
+    public virtual DbSet<EventMaster> EventMasters { get; set; }
+
+    public virtual DbSet<EventSchedule> EventSchedules { get; set; }
+
+    public virtual DbSet<Instruction> Instructions { get; set; }
+
     public virtual DbSet<OrganizationMaster> OrganizationMasters { get; set; }
 
     public virtual DbSet<SubExpert> SubExperts { get; set; }
@@ -69,6 +75,53 @@ public partial class PerfectQuizAppDBContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.UpdatedBy).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<EventMaster>(entity =>
+        {
+            entity.HasKey(e => e.EventId);
+
+            entity.ToTable("EventMaster");
+
+            entity.Property(e => e.EventId).ValueGeneratedNever();
+            entity.Property(e => e.CreatedBy).HasMaxLength(50);
+            entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(50);
+            entity.Property(e => e.Duration).HasMaxLength(50);
+            entity.Property(e => e.EventName).HasMaxLength(50);
+            entity.Property(e => e.IsActive).HasMaxLength(10);
+            entity.Property(e => e.IsDeleted).HasMaxLength(10);
+            entity.Property(e => e.Medium).HasMaxLength(50);
+            entity.Property(e => e.Remarks).HasMaxLength(50);
+            entity.Property(e => e.Status).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<EventSchedule>(entity =>
+        {
+            entity.HasKey(e => e.ScheduleId);
+
+            entity.ToTable("EventSchedule");
+
+            entity.Property(e => e.ScheduleId).ValueGeneratedNever();
+            entity.Property(e => e.CreatedBy).HasMaxLength(50);
+            entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+            entity.Property(e => e.Module).HasMaxLength(50);
+            entity.Property(e => e.Remarks).HasMaxLength(50);
+            entity.Property(e => e.TestingStatus).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Instruction>(entity =>
+        {
+            entity.Property(e => e.InstructionId).ValueGeneratedNever();
+            entity.Property(e => e.CreatedBy).HasMaxLength(50);
+            entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+            entity.Property(e => e.Instruction1).HasColumnName("Instruction");
+            entity.Property(e => e.IsActive).HasMaxLength(10);
+            entity.Property(e => e.IsDeleted).HasMaxLength(10);
+
+            entity.HasOne(d => d.Event).WithMany(p => p.Instructions)
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("FK_Instructions_EventMaster");
         });
 
         modelBuilder.Entity<OrganizationMaster>(entity =>

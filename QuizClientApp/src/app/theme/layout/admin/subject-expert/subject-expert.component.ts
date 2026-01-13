@@ -34,7 +34,18 @@ export class SubjectExpertComponent implements OnInit {
   }
 
   create() { this.router.navigate(['app/createsubjectexpert']); }
-  edit(regNo: string) { this.router.navigate(['/experts', regNo, 'edit']); }
+
+  edit(regNo: string): void {
+    if (regNo == null) return;
+    this.router.navigate(['app/createsubjectexpert'], { queryParams: { regNo } });
+  }
+
+
+  //edit(regNo: string): void
+  //{
+  //  this.router.navigate(['add/createsubjectexpert', regNo, 'edit']);
+  //}
+
   delete(regNo: string) {
     if (!confirm('Delete expert?')) return;
     this.svc.delete(regNo).subscribe({ next: () => this.load(), error: () => alert('Delete failed') });

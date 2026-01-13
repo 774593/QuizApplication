@@ -37,7 +37,7 @@ export class SubjectComponent implements OnInit {
 
   edit(id?: number): void {
     if (id == null) return;
-    this.router.navigate(['/editsubject'], { queryParams: { id } });
+    this.router.navigate(['app/createsubject'], { queryParams: { id } });
   }
 
   delete(id?: number): void {

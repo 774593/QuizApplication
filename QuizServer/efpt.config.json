@@ -19,6 +19,18 @@
          "ObjectType": 0
       },
       {
+         "Name": "[perfect_quiz].[EventMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[perfect_quiz].[EventSchedule]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[perfect_quiz].[Instructions]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[perfect_quiz].[OrganizationMaster]",
          "ObjectType": 0
       },
